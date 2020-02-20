@@ -38,9 +38,9 @@ export default class App extends Component<Props> {
         <TouchableOpacity style={styles.button} onPress={() => { this.notif.checkPermission(this.handlePerm.bind(this)) }}><Text>Check Permission</Text></TouchableOpacity>
 
         <View style={styles.spacer}></View>
-        <TextInput style={styles.textField} value={this.state.senderId} onChangeText={(e) => {this.setState({ senderId: e })}} placeholder="GCM ID" />
+        <TextInput style={styles.textField} value={this.state.senderId} onChangeText={(e) => {this.setState({ senderId: e })}} placeholder="FCM ID" />
         <TouchableOpacity style={styles.button} onPress={() => { this.notif.configure(this.onRegister.bind(this), this.onNotif.bind(this), this.state.senderId) }}><Text>Configure Sender ID</Text></TouchableOpacity>
-        {this.state.gcmRegistered && <Text>GCM Configured !</Text>}
+        {this.state.fcmRegistered && <Text>FCM Configured !</Text>}
 
         <View style={styles.spacer}></View>
       </View>
@@ -50,7 +50,7 @@ export default class App extends Component<Props> {
   onRegister(token) {
     Alert.alert("Registered !", JSON.stringify(token));
     console.log(token);
-    this.setState({ registerToken: token.token, gcmRegistered: true });
+    this.setState({ registerToken: token.token, fcmRegistered: true });
   }
 
   onNotif(notif) {
